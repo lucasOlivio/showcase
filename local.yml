@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: showcase_production_postgres
+    container_name: showcase_postgres
+    volumes:
+      - /var/lib/postgresql/12/data:/var/lib/postgresql/12/data:ro
+      - /var/lib/postgresql/12/backups:/var/lib/postgresql/12/backups:ro
+    env_file:
+      - ./.envs/.postgres
+
+  server:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/local/server/Dockerfile
+    image: showcase_server
+    container_name: showcase_server
+    depends_on:
+      - postgres
+    volumes:
+      - ./server:/server:z
+    env_file:
+      - ./.envs/.server
+      - ./.envs/.postgres
+    ports:
+      - "8000:8000"
+    command: /start_server
+
+  client:
+    build:
+      context: .
+      dockerfile: ./compose/local/client/Dockerfile
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.envs/.client
+    depends_on:
+      - server
+    command: npm start
+
+  documentation:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    container_name: showcase_docs
+    volumes:
+      - ./docs:/docs:z
+      - ./server/showcase/config:/server/showcase/config:z
+      - ./server/showcase:/server/showcase:z
+    env_file:
+      - ./.envs/.server
+    ports:
+      - "8001:8001"
+    command: /start_docs
+
+  redis:
+    image: redis:5.0
+    container_name: showcase_redis
