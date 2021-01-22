@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/lucasOlivio/showcase.svg?branch=master)](https://travis-ci.org/lucasOlivio/showcase)
-[![node](https://img.shields.io/static/v1?label=node&message=14.15.4&color=blue&style=plastic)](https://nodejs.org/en/)
+[![node](https://img.shields.io/static/v1?label=node&message=14.15.4&color=blu)](https://nodejs.org/en/)
 [![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
 [![License](https://img.shields.io/npm/l/react-native-smart-badge.svg)](https://github.com/lucasOlivio/showcase/blob/master/LICENSE)
 
