@@ -35,6 +35,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/client/Dockerfile
+    image: showcase_client
+    container_name: showcase_client
     volumes:
       - ./client:/client
       - /client/node_modules
