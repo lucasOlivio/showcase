@@ -8,8 +8,8 @@ services:
     image: showcase_production_postgres
     container_name: showcase_postgres
     volumes:
-      - /var/lib/postgresql/12/data:/var/lib/postgresql/12/data:ro
-      - /var/lib/postgresql/12/backups:/var/lib/postgresql/12/backups:ro
+      - /var/lib/postgresql/12/data:/var/lib/postgresql/12/data:z
+      - /var/lib/postgresql/12/backups:/var/lib/postgresql/12/backups:z
     env_file:
       - ./.envs/.postgres
 

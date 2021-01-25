@@ -20,8 +20,7 @@ if os.getenv("READTHEDOCS", default=False) == "True":
 else:
     sys.path.insert(0, os.path.abspath("/server"))
 os.environ["DATABASE_URL"] = "sqlite:///readthedocs.db"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "showcase.config")
-os.environ.setdefault("DJANGO_CONFIGURATION", "Local")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "showcase.config.local")
 
 # -- Project information -----------------------------------------------------
 
@@ -38,7 +37,6 @@ author = "Lucas de Moraes Olivio"
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
-    "configurations.sphinx",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
